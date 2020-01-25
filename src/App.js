@@ -3,65 +3,53 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
-import ClassComponent from './components/ClassComponent';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Users from './pages/Users';
 import HeaderNavbar from './components/Navbar';
-import FunctionalComponent from './components/FunctionalComponent';
 
-function App() {
+
+const Layout = props => {
   return (
-    <Router>
-      <HeaderNavbar />
-      <FunctionalComponent title="Hi Functional Component"
-        description="Test description">
-        <div className="alert alert-danger">
-          This is a primary alert—check it out!
-        </div>
-      </FunctionalComponent>
-      <FunctionalComponent title="Hi Functional Component"
-        description="Test description">
-        <div className="alert alert-success">
-          This is a primary alert—check it out!
-        </div>
-      </FunctionalComponent>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li>
-            <Link to="/users">Users</Link>
-          </li>
-        </ul>
-
-        <Switch>
-          <Route path="/" exact>
-            <Home />
-          </Route>
-          <Route path="/profile" exact>
-            <Profile />
-          </Route>
-          <Route path="/users" exact>
-            <Users />
-          </Route>
-        </Switch>
+    <>
+      <HeaderNavbar></HeaderNavbar>
+      <div className="container pt-5">
+        {props.children}
       </div>
-    </Router>
-  );
+    </>
+  )
 }
 
 
 
 
+function App() {
+  return (
+    <Router>
+      {/* <FunctionalComponent count={1} step={1} />
+      <FunctionalComponent count={2} step={3} /> */}
 
-
+        <Switch>
+          <Route path="/" exact>
+            <Layout>
+              <Home />
+            </Layout>
+          </Route>
+          <Route path="/profile">
+            <Layout>
+              <Profile />
+            </Layout>
+          </Route>
+          <Route path="/users">
+            <Layout>
+              <Users />
+            </Layout>
+          </Route>
+        </Switch>
+    </Router>
+  );
+}
 
 
 // return (
