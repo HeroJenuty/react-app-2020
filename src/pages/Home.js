@@ -2,6 +2,7 @@ import React from 'react';
 import QuantityInput from '../components/QuantityInput';
 
 
+//This is a home page
 class Home extends React.Component {
 
     constructor(props) {
